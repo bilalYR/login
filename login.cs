@@ -1,5 +1,40 @@
+class clsDatabase
+    {
+        SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=dbSales;Integrated Security=True");
+        SqlDataAdapter da;
+        DataSet ds;
+        SqlCommand cmd;
+        String qry;
+        
+        }
+
+public bool Search(string tblName,string field1,string value1, string field2,string value2)
+        {
+            
+            qry = "select * from " + tblName + " where " + field1 + "='" + value1 + "' and " +  field2 + "='" + value2 + "'";
+            da = new SqlDataAdapter(qry, con);
+            ds = new DataSet();
+            da.Fill(ds, "tab");
+            if (ds.Tables["tab"].Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 private void button1_Click(object sender, EventArgs e)
         {
+            clsDatabase obj = new clsDatabase();
             bool chk = obj.Search("tblLogin", "loginId", textBox1.Text, "password", textBox2.Text);
 
             if (chk == true)
