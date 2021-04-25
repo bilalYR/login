@@ -16,6 +16,8 @@ namespace BHM
         DataSet ds;
         SqlCommand cmd;
         String qry;
+        public static string user_role;
+        public static int user_id;
 
         public bool Search(string tblName,string field1,string value1, string field2,string value2)
         {
